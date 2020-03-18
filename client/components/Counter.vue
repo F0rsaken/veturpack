@@ -2,7 +2,10 @@
   <div class="counter-wrapper">
     <div>{{ msg }}</div>
     <div>
-      <img src="https://vuejs.org/images/logo.png" width="200" height="200" />
+      <img 
+        src="https://vuejs.org/images/logo.png" 
+        width="200" 
+        height="200" >
     </div>
     <div class="counter">
       {{ count }}
@@ -10,13 +13,30 @@
     <button @click="$store.commit('INCREMENT')">Increment</button>
     <button @click="$store.commit('DECREMENT')">Decrement</button>
     <button @click="$store.dispatch('incrementAsync')">Increment Async</button>
+
+    <app-button 
+      :msg="'Some message'" 
+      :inner-text="'some inner test'"
+    />
   </div>
 </template>
 
 <script>
-import * as _ from 'lodash'
+// import * as _ from 'lodash'
+import AppButton from "@/components/AppButton.vue"
 
 export default {
+  components: {
+    AppButton
+  },
+
+  props: {
+    externalMessage: {
+      type: String,
+      required: true
+    }
+  },
+
   data () {
     return {
       msg: 'Vetur means "Winter" in icelandic.'
